@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Photobooth</title>
+  <link rel="stylesheet" href="Options.css">
+</head>
+<body>
+  <div class="stack-container">
+  <div class="left-panel">
+    <div class="gallery" id="gallery"></div>
+  </div>
+
+  <div class="right-panel">
+    <h2 class="polaroid-heading">SELECT 4 PHOTOS</h2>
+    <div class="polaroid-frame" id="polaroid"></div>
+  </div>
+</div>
+  
+<script>
+  const gallery = document.getElementById('gallery');
+  const polaroid = document.getElementById('polaroid');
+
+  const photos = JSON.parse(localStorage.getItem("capturedPhotos")) || [];
+
+  photos.forEach(src => {
+    const img = document.createElement('img');
+    img.src = src;
+    img.addEventListener('click', () => {
+      img.classList.toggle('selected');
+      const selected = document.querySelectorAll('.gallery img.selected');
+      if (selected.length > 4) {
+        img.classList.remove('selected'); // limit to 4
+      }
+
+      // ✅ Automatically stack when 4 are selected
+      if (selected.length === 4) {
+        polaroid.innerHTML = ''; // clear frame
+
+        const column = document.createElement('div');
+        column.className = 'image-column';
+
+        selected.forEach(img => {
+          const stacked = document.createElement('img');
+          stacked.src = img.src;
+          stacked.style.border = '1px solid #000000';
+          stacked.style.boxShadow = '0 4px 12px rgba(0,0,0,0.3)';
+          column.appendChild(stacked);
+        });
+
+        polaroid.appendChild(column);
+      }
+    });
+    gallery.appendChild(img);
+  });
+</script>
+</body>
+</html>

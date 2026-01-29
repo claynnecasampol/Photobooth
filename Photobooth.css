@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Fleur+De+Leah&display=swap');
+
+body {
+    background-color: #fffbca;
+    font-family: Arial, sans-serif;
+    display: flex;              /* enable flexbox */
+    justify-content: center;    /* center horizontally */
+    align-items: center;        /* center vertically */
+    height: 100vh;              /* full viewport height */
+    margin: 0;                  /* remove default body margin */
+}
+
+.Greetings {
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #fff6dd;
+    background-color: #333333;
+    width: 90%;
+    max-width: 2000px;
+    height: 50vh;
+    min-height: 550px;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.message1 {
+    font-family: "Fleur De Leah", cursive;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 8rem;
+    color: #fff6dd;             /* matches container text color */
+}
+
+.button1 {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    font-family: "Cinzel", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 25px;
+    cursor: pointer;
+    border-radius: 12px;
+    margin-top: -50px;
+}
+
+video {
+    border: 2px solid #333;
+    width: 50vw;        /* Full viewport width */
+    max-width: 100%;     /* Prevent overflow */
+    height: 50vh;
+    min-height: 400px;
+    display: block;
+    margin-bottom: 10px;
+    object-fit: cover;
+    justify-content: center;
+    align-items: center;
+}
+
+.video-container {
+  position: relative; /* allows absolute positioning inside */
+  display: absolute;
+  flex-direction: column;
+  align-items: center;
+  width: 50vw;
+}
+
+.button2 {
+  position: absolute;
+  bottom: 30%;              /* place at bottom of video */
+  transform: translateX(-50%);
+  background: none;
+  border: none;
+  padding: 0;
+  margin-left: 50%;
+  cursor: pointer;
+  z-index: 10;            /* ensures it sits above video */
+}
+
+button {
+    padding: 8px 12px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+
+#countdown {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 48px;
+    font-weight: bold;
+    color: red;
+    display: none;
+}
+
+.photo-strip {
+  display: flex;
+  flex-direction: row;   /* force horizontal layout */
+  gap: 10px;
+  margin-top: 20px;
+  padding: 10px;
+  border-radius: 8px;
+  width: 50vw;           /* visible width (fits ~4 images) */
+  overflow-x: auto;      /* enable horizontal scroll */
+  overflow-y: hidden;    /* hide vertical scroll */
+  scrollbar-width: none; /* Firefox */
+}
+
+.photo-strip img {
+  flex: 0 0 auto;        /* prevent shrinking */
+  width: 180px;
+  height: 120px;
+  object-fit: cover;
+  border: 2px solid #ccc;
+}
+
+.photo-strip img.active {
+  border-color: red;
+}
+
+.photo-strip::-webkit-scrollbar {
+  display: none;         /* Chrome, Safari */
+}
+.photo-strip {
+  -ms-overflow-style: none;  /* IE and Edge */
+}

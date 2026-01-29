@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Photobooth</title>
+  <link rel="stylesheet" href="Photobooth.css">
+</head>
+<body>
+ <div class="video-container">
+  <video id="video" autoplay></video>
+  <div id="countdown"></div>
+  <button id="start" class="button2">
+    <img src="elements/TakePics.png" alt="Start Capture" style="width:90px;height:60px;">
+  </button>
+
+  <!-- Photo strip underneath the video -->
+  <div class="photo-strip" id="gallery"></div>
+</div>
+
+<canvas id="canvas" width="300" height="200" style="display:none;"></canvas>
+
+  <script>
+  const video = document.getElementById('video');
+  const canvas = document.getElementById('canvas');
+  const startBtn = document.getElementById('start');
+  const gallery = document.getElementById('gallery');
+  const countdown = document.getElementById('countdown');
+  const clearBtn = document.getElementById('clear'); // make sure you have a clear button in HTML
+  let photoCount = 0;
+
+  // Access webcam
+  navigator.mediaDevices.getUserMedia({ video: true })
+    .then(stream => {
+      video.srcObject = stream;
+    })
+    .catch(err => console.error("Error accessing camera: ", err));
+
+  // Preload 6 empty slots in gallery
+  for (let i = 0; i < 6; i++) {
+    const placeholder = document.createElement('img');
+    placeholder.src = "data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=";
+    placeholder.classList.add('placeholder');
+    gallery.appendChild(placeholder);
+  }
+
+  startBtn.addEventListener('click', () => {
+    let timeLeft = 3; // countdown seconds
+
+    function runCountdown() {
+      countdown.style.display = 'block';
+      countdown.textContent = timeLeft;
+
+      const timer = setInterval(() => {
+        timeLeft--;
+        if (timeLeft > 0) {
+          countdown.textContent = timeLeft;
+        } else {
+          clearInterval(timer);
+          countdown.style.display = 'none';
+
+          // Take photo
+          const context = canvas.getContext('2d');
+          context.drawImage(video, 0, 0, canvas.width, canvas.height);
+          const imageData = canvas.toDataURL("image/png");
+
+          const slot = gallery.children[photoCount];
+          slot.src = imageData;
+          slot.classList.remove('placeholder');
+          slot.classList.add('active');
+
+          // Remove highlight from previous photo
+          if (photoCount > 0) {
+            gallery.children[photoCount - 1].classList.remove('active');
+          }
+
+          photoCount++;
+
+          if (photoCount < 6) {
+            timeLeft = 3; // reset countdown
+            setTimeout(runCountdown, 1000); // start next countdown
+          } else {
+            // Save all photos to localStorage
+            const images = Array.from(document.querySelectorAll('#gallery img'))
+                                .map(img => img.src);
+            localStorage.setItem("capturedPhotos", JSON.stringify(images));
+
+            // Redirect to next page
+            window.location.href = "choose.html";
+          }
+        }
+      }, 1000);
+    }
+
+    runCountdown();
+  });
+
+  clearBtn.addEventListener('click', () => {
+    gallery.innerHTML = '';
+    photoCount = 0;
+    // Recreate placeholders
+    for (let i = 0; i < 6; i++) {
+      const placeholder = document.createElement('img');
+      placeholder.src = '';
+      placeholder.classList.add('placeholder');
+      gallery.appendChild(placeholder);
+    }
+  });
+</script>
+</body>
+</html>

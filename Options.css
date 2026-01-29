@@ -1,0 +1,116 @@
+ @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Fleur+De+Leah&display=swap');
+
+ body {
+      font-family: sans-serif;
+      text-align: center;
+      background-color: #222;
+      color: white;
+    }
+    
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 150px); /* 2 columns of fixed width */
+  grid-template-rows: repeat(3, 100px);    /* 3 rows of fixed height */
+  gap: 110px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.gallery img {
+  width: 250px;
+  height: 200px;
+  object-fit: cover;
+  border: 3px solid #ccc;
+  cursor: pointer;
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+.gallery img.selected {
+  border-color: #ff4081;
+}
+    #confirm {
+      padding: 10px 20px;
+      font-size: 16px;
+      color: white;
+      border: none;
+      cursor: pointer;
+      margin-bottom: 20px;
+    }
+    #confirm:disabled {
+      background-color: #555;
+      cursor: not-allowed;
+    }
+
+    .stacked-photo {
+      width: 140px;
+      height: 90px;
+      object-fit: cover;
+      position: absolute;
+      left: 20px;
+      transition: transform 0.3s;
+    }
+    .stacked-photo:nth-child(1) { top: 20px; z-index: 1; transform: rotate(-2deg); }
+    .stacked-photo:nth-child(2) { top: 40px; z-index: 2; transform: rotate(1deg); }
+    .stacked-photo:nth-child(3) { top: 60px; z-index: 3; transform: rotate(-1deg); }
+    .stacked-photo:nth-child(4) { top: 80px; z-index: 4; transform: rotate(2deg); }
+
+.image-column {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+
+.image-column img {
+  width: 175px;
+  height: 110px;
+  object-fit: cover;
+}
+
+.polaroid-frame {
+    background: #f5f5dc;
+    padding: 20px;
+    width: 170px;
+    height: 500px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    border-radius: 4px;
+    position: relative;
+}
+
+.stack-container {
+  display: flex;              /* horizontal layout */
+  justify-content: flex-start;    /* center both panels */
+  gap: 150px;                  /* spacing between gallery and polaroid */
+  margin-top: 30px;
+  margin-left: 70px;
+}
+
+.left-panel {
+  display: flex;
+  flex-direction: column;     /* gallery above button */
+  align-items: center;
+}
+
+.right-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.right-panel h2 {
+  margin-bottom: 20px;
+  font-size: 40px;
+  color: white;
+  font-family: "Cinzel", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+  text-align: left;
+}
+
+.polaroid-heading {
+  font-size: 18px;
+  margin-bottom: 20px;
+  color: white;
+  text-align: left;
+}
