@@ -6,14 +6,27 @@
   <link rel="stylesheet" href="Options.css">
 </head>
 <body>
-  <div class="stack-container">
+<div class="stack-container">
   <div class="left-panel">
     <div class="gallery" id="gallery"></div>
   </div>
 
   <div class="right-panel">
     <h2 class="polaroid-heading">SELECT 4 PHOTOS</h2>
+    <div class="frame-and-options">
     <div class="polaroid-frame" id="polaroid"></div>
+
+    <div class="color-options">
+      <h2 class="frame-heading">FRAME COLORS</h2>
+      <button class="color-btn" data-color="#E0D7CC">Beige</button>
+      <button class="color-btn" data-color="#ffffff">White</button>
+      <button class="color-btn" data-color="#151613">Black</button>
+      <button class="color-btn" data-color="#5B5348">Light Brown</button>
+      <button class="color-btn" data-color="#151613">Brown</button>
+      <button class="color-btn" data-color="#5B3348">Violet</button>
+    </div>
+  </div>
+  </div>
   </div>
 </div>
   
@@ -53,6 +66,15 @@
     });
     gallery.appendChild(img);
   });
+
+  // Color option buttons
+const colorButtons = document.querySelectorAll('.color-btn');
+colorButtons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const chosenColor = btn.getAttribute('data-color');
+    polaroid.style.backgroundColor = chosenColor;
+  });
+});
 </script>
 </body>
 </html>

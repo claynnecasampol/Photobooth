@@ -3,7 +3,7 @@
  body {
       font-family: sans-serif;
       text-align: center;
-      background-color: #222;
+      background-color: #353632;
       color: white;
     }
     
@@ -68,20 +68,18 @@
 }
 
 .polaroid-frame {
-    background: #f5f5dc;
+    background: #151613;
     padding: 20px;
     width: 170px;
-    height: 500px;
+    height: 535px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-    border-radius: 4px;
     position: relative;
 }
-
 .stack-container {
-  display: flex;              /* horizontal layout */
-  justify-content: flex-start;    /* center both panels */
-  gap: 150px;                  /* spacing between gallery and polaroid */
-  margin-top: 30px;
+  display: flex;
+  justify-content: flex-start;   /* align panels horizontally from the left */
+  align-items: stretch;       /* align both panels vertically at the top */
+  gap: 150px;
   margin-left: 70px;
 }
 
@@ -89,17 +87,18 @@
   display: flex;
   flex-direction: column;     /* gallery above button */
   align-items: center;
+  margin-top: 55px;
 }
 
 .right-panel {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  margin-top: 10px;
 }
 
 .right-panel h2 {
-  margin-bottom: 20px;
-  font-size: 40px;
+  margin-bottom: 15px;
   color: white;
   font-family: "Cinzel", serif;
     font-optical-sizing: auto;
@@ -109,8 +108,45 @@
 }
 
 .polaroid-heading {
-  font-size: 18px;
   margin-bottom: 20px;
   color: white;
   text-align: left;
+  font-size: 40px;
+}
+
+.frame-and-options {
+  display: flex;              /* side-by-side layout */
+  align-items: flex-start;    /* align at the top */
+  gap: 30px;                  /* space between frame and buttons */
+}
+
+.frame-heading {
+  font-size: 18px;
+  margin-bottom: 20px;
+  color: white;
+  text-align: center;
+}
+
+.color-options {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column; 
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.color-btn {
+  padding: 8px 12px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 14px;
+  color: #222;
+  background-color: #ddd;
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+.color-btn:hover {
+  transform: scale(1.1);
+  background-color: #bbb;
 }
