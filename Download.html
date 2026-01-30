@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Photobooth</title>
+  <link rel="stylesheet" href="End.css"> <!-- reuse your existing styles -->
+</head>
+<body>
+<div class="stack-container">
+    <div class="left1-panel">
+        <div class="polaroid-frame" id="polaroid"></div>
+    </div>
+
+<div class="right1-panel">
+    <div class="message1">Thank you for using</br>the photobooth!</br>- Claynne</div>
+    <div class="download-button-container">
+        <a class="download-button" id="downloadBtn" download="photobooth_images.zip">DOWNLOAD</a>
+        <a class="again" id="again2" href="Picture.html">AGAIN?</a>
+    </div>
+</div>
+
+<script>
+  const polaroid = document.getElementById('polaroid');
+
+  // Load saved data
+  const selectedPhotos = JSON.parse(localStorage.getItem("selectedPhotos")) || [];
+  const frameColor = localStorage.getItem("frameColor") || "#ffffff";
+
+  polaroid.style.backgroundColor = frameColor;
+
+  // Add photos inside the frame (no animation)
+  selectedPhotos.forEach(src => {
+    const img = document.createElement('img');
+    img.src = src;
+    img.classList.add('photo');
+    polaroid.appendChild(img);
+  });
+</script>
+</body>
+</html>
