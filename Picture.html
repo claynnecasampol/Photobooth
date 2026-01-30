@@ -6,18 +6,23 @@
   <link rel="stylesheet" href="Photobooth.css">
 </head>
 <body>
- <div class="video-container">
+<div class="video-container">
   <video id="video" autoplay></video>
   <div id="countdown"></div>
   <button id="start" class="button2">
     <img src="elements/TakePics.png" alt="Start Capture" style="width:90px;height:60px;">
   </button>
-
-  <!-- Photo strip underneath the video -->
+  <!-- ✅ Filters inside video-container -->
+  <div class="filters">
+    <div class="filter-header">FILTER</div>
+    <button class="filter-btn" data-filter="none" style="background-color: #E0D7CC;"></button>
+    <button class="filter-btn" data-filter="grayscale(100%)" style="background-color: #57524b;"></button>
+    <button class="filter-btn" data-filter="sepia(100%)" style="background-color: #8B4513;"></button>
+    <button class="filter-btn" data-filter="contrast(200%)" style="background-color: #392418;"></button>
+  </div>
   <div class="photo-strip" id="gallery"></div>
 </div>
-
-<canvas id="canvas" width="300" height="200" style="display:none;"></canvas>
+<canvas id="canvas" width="640" height="480" style="display:none;"></canvas>
 
   <script>
   const video = document.getElementById('video');
@@ -27,6 +32,16 @@
   const countdown = document.getElementById('countdown');
   const clearBtn = document.getElementById('clear'); // make sure you have a clear button in HTML
   let photoCount = 0;
+  let currentFilter = "none"; // keep track of selected filter
+
+// Filter buttons
+const filterButtons = document.querySelectorAll(".filter-btn");
+filterButtons.forEach(btn => {
+  btn.addEventListener("click", () => {
+    currentFilter = btn.getAttribute("data-filter");
+    video.style.filter = currentFilter; // apply to live video
+  });
+});
 
   // Access webcam
   navigator.mediaDevices.getUserMedia({ video: true })
@@ -65,6 +80,9 @@ const context = canvas.getContext('2d');
 context.save();
 context.translate(canvas.width, 0);
 context.scale(-1, 1);
+
+// ✅ Apply the current filter to the canvas
+context.filter = currentFilter;
 
 context.drawImage(video, 0, 0, canvas.width, canvas.height);
 

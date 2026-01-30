@@ -3,12 +3,13 @@
 body {
     background-color: #fffbca;
     font-family: Arial, sans-serif;
-    display: flex;              /* enable flexbox */
     justify-content: center;    /* center horizontally */
     align-items: center;        /* center vertically */
+    display: flex;              /* use flexbox layout */
     height: 100vh;              /* full viewport height */
     margin: 0;                  /* remove default body margin */
 }
+
 
 .Greetings {
     display: flex;
@@ -53,6 +54,14 @@ body {
     margin-top: -50px;
 }
 
+.main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+}
+
 video {
     border: 2px solid #333;
     width: 50vw;        /* Full viewport width */
@@ -81,7 +90,7 @@ video {
 
 .button2 {
   position: absolute;
-  bottom: 30%;              /* place at bottom of video */
+  bottom: 35%;              /* place at bottom of video */
   transform: translateX(-50%);
   background: none;
   border: none;
@@ -110,11 +119,40 @@ button {
     display: none;
 }
 
+.filters {
+  display: flex;                 /* horizontal layout */
+  align-items: center;
+  justify-content: flex-end;
+  gap: 15px;
+  background: #333333;   /* optional background */
+  padding: 10px 15px;
+}
+
+.filter-header {
+  font-size: 18px;
+  color: white;
+  font-family: "Cinzel", serif;
+  margin-right: 10px;
+}
+
+.filter-btn {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;          /* circular buttons */
+  border: 2px solid #ccc;
+  cursor: pointer;
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+.filter-btn:hover {
+  transform: scale(1.1);
+  border-color: #392418;
+}
+
 .photo-strip {
   display: flex;
   flex-direction: row;   /* force horizontal layout */
   gap: 10px;
-  margin-top: 20px;
   padding: 10px;
   border-radius: 8px;
   width: 50vw;           /* visible width (fits ~4 images) */
