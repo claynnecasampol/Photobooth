@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Polaroid Drop</title>
+  <link rel="stylesheet" href="Options.css"> <!-- reuse your existing styles -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Fleur+De+Leah&family=Tilt+Warp&display=swap" rel="stylesheet">
+  <style>
+    /* Animate the whole frame dropping */
+    @keyframes frameDrop {
+      0% {
+        transform: translateY(-70px) rotate(-5deg);
+        opacity: 0;
+      }
+      80% {
+        transform: translateY(20px) rotate(2deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(0) rotate(0deg);
+      }
+    }
+
+.polaroid-frame {
+  animation: frameDrop 1s ease forwards;
+  margin-top: 30px;
+  width: 170px;      /* set width */
+  height: 535px;     /* ✅ adjust this value to change frame height */
+  padding: 20px;     /* optional inner spacing */
+  background: #ffffff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  position: relative;
+}
+
+    /* Photos inside just fade in smoothly with the frame */
+    .drop-photo {
+      width: 175px;
+      height: 110px;
+      object-fit: cover;
+      border: 1px solid #000;
+      opacity: 0;
+      animation: fadeIn 1s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    .stack-container {
+  display: flex;
+  justify-content: center;  
+  align-items: stretch;       
+  gap: 180px;
+  margin-top: 20px;
+}
+
+.left1-panel {
+  display: flex;
+  flex-direction: column;     
+  align-items: flex-start;
+}
+
+.message1 {
+margin-top: 150px;
+  color: white;
+   font-family: "Tilt Warp", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings:
+    "XROT" 0,
+    "YROT" 0;
+font-size: 90px;
+  text-align: left;
+}
+
+.right1-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+  width: 450px;
+  height: 650px;
+  background-color: #21221E;
+  border: 5px solid #E0D7CC;
+}
+.drop-hole {
+  width: 300px;
+  height: 20px;
+  background: black;
+  border-radius: 75px;
+  margin-top: 30px;
+}
+
+.shadow {
+  width: 450px;
+  height: 20px;
+  background: black;
+}
+
+  </style>
+</head>
+<body>
+<div class="stack-container">
+<div class="left1-panel">
+    <h2 class="message1">Picture</br>Perfect</br>Moments<br>Drops Here</h2>
+</div>
+
+<div class="right1-panel">
+  <div class="drop-hole"></div>
+  <div class="polaroid-frame" id="polaroid"></div>
+  <div class="shadow"></div>
+</div>
+</div>
+  <script>
+    const polaroid = document.getElementById('polaroid');
+
+    // Load saved data
+    const selectedPhotos = JSON.parse(localStorage.getItem("selectedPhotos")) || [];
+    const frameColor = localStorage.getItem("frameColor") || "#ffffff";
+
+    polaroid.style.backgroundColor = frameColor;
+
+    // Add photos inside the frame
+    selectedPhotos.forEach(src => {
+      const img = document.createElement('img');
+      img.src = src;
+      img.classList.add('drop-photo');
+      polaroid.appendChild(img);
+    });
+  </script>
+</body>
+</html>

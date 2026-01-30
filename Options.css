@@ -9,8 +9,8 @@
     
 .gallery {
   display: grid;
-  grid-template-columns: repeat(2, 150px); /* 2 columns of fixed width */
-  grid-template-rows: repeat(3, 100px);    /* 3 rows of fixed height */
+  grid-template-columns: repeat(2, 150px);
+  grid-template-rows: repeat(3, 100px);  
   gap: 110px;
   justify-content: center;
   margin-bottom: 20px;
@@ -68,7 +68,7 @@
 }
 
 .polaroid-frame {
-    background: #151613;
+    background: #ffffff;
     padding: 20px;
     width: 170px;
     height: 535px;
@@ -77,15 +77,14 @@
 }
 .stack-container {
   display: flex;
-  justify-content: flex-start;   /* align panels horizontally from the left */
-  align-items: stretch;       /* align both panels vertically at the top */
+  justify-content: center;  
+  align-items: stretch;       
   gap: 180px;
-  margin-left: 70px;
 }
 
 .left-panel {
   display: flex;
-  flex-direction: column;     /* gallery above button */
+  flex-direction: column;     
   align-items: center;
   margin-top: 55px;
 }
@@ -117,14 +116,14 @@
 .frame-options {
   display: flex;
   flex-direction: column;
-  align-items: center; /* ✅ centers all children including the heading */
+  align-items: center;
   margin-top: 150px;
 }
 
 .frame-and-options {
-  display: flex;              /* side-by-side layout */
-  align-items: flex-start;    /* align at the top */
-  gap: 100px;                  /* space between frame and buttons */
+  display: flex;             
+  align-items: flex-start;    
+  gap: 100px;             
 }
 
 .frame-heading {

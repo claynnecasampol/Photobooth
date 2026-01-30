@@ -26,7 +26,7 @@
         <button class="color-btn" data-color="#392418"></button>
         <button class="color-btn" data-color="#5B3348"></button>
       </div>
-      <a class="confirm-button" onclick="window.location.href='Share.html'">CONFIRM</a>
+      <a class="confirm-button" onclick="saveSelection()">CONFIRM</a>
     </div>
   </div>  </div>
 </div>
@@ -77,6 +77,20 @@ colorButtons.forEach(btn => {
     polaroid.style.backgroundColor = chosenColor;
   });
 });
+
+function saveSelection() {
+  const selected = Array.from(document.querySelectorAll('.gallery img.selected'))
+                        .map(img => img.src);
+
+  const frameColor = document.getElementById('polaroid').style.backgroundColor;
+
+  // Save to localStorage
+  localStorage.setItem("selectedPhotos", JSON.stringify(selected));
+  localStorage.setItem("frameColor", frameColor);
+
+  // Redirect to drop page
+  window.location.href = "Drop.html";
+}
 </script>
 </body>
 </html>
