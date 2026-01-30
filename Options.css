@@ -79,7 +79,7 @@
   display: flex;
   justify-content: flex-start;   /* align panels horizontally from the left */
   align-items: stretch;       /* align both panels vertically at the top */
-  gap: 150px;
+  gap: 180px;
   margin-left: 70px;
 }
 
@@ -114,39 +114,61 @@
   font-size: 40px;
 }
 
+.frame-options {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* ✅ centers all children including the heading */
+  margin-top: 150px;
+}
+
 .frame-and-options {
   display: flex;              /* side-by-side layout */
   align-items: flex-start;    /* align at the top */
-  gap: 30px;                  /* space between frame and buttons */
+  gap: 100px;                  /* space between frame and buttons */
 }
 
 .frame-heading {
   font-size: 18px;
   margin-bottom: 20px;
   color: white;
-  text-align: center;
 }
 
 .color-options {
   margin-top: 20px;
-  display: flex;
-  flex-direction: column; 
-  flex-wrap: wrap;
-  gap: 10px;
+  display: grid;
+  grid-template-columns: repeat(3, 40px); /* 3 buttons per row */
+  gap: 30px; /* spacing between buttons */
+  justify-content: flex-end; /* align grid to the right side */
 }
 
 .color-btn {
-  padding: 8px 12px;
-  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;        /* makes them circular */
+  border: 2px solid #ccc;    /* optional border */
   cursor: pointer;
-  border-radius: 4px;
-  font-size: 14px;
-  color: #222;
-  background-color: #ddd;
-  transition: transform 0.2s, background-color 0.2s;
+  background-color: transparent; /* will be set via JS */
+  transition: transform 0.2s, border-color 0.2s;
 }
 
 .color-btn:hover {
   transform: scale(1.1);
   background-color: #bbb;
+}
+
+.confirm-button {
+  margin-top: 180px;
+  padding: 12px 25px;
+  font-size: 20px;
+    font-family: "Cinzel", serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+  color: #151613;
+  width: 130px;
+  background-color: #E0D7CC;
+  border: 5px solid #392418;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }

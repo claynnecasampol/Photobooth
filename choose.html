@@ -16,18 +16,19 @@
     <div class="frame-and-options">
     <div class="polaroid-frame" id="polaroid"></div>
 
-    <div class="color-options">
+    <div class="frame-options">
       <h2 class="frame-heading">FRAME COLORS</h2>
-      <button class="color-btn" data-color="#E0D7CC">Beige</button>
-      <button class="color-btn" data-color="#ffffff">White</button>
-      <button class="color-btn" data-color="#151613">Black</button>
-      <button class="color-btn" data-color="#5B5348">Light Brown</button>
-      <button class="color-btn" data-color="#151613">Brown</button>
-      <button class="color-btn" data-color="#5B3348">Violet</button>
+      <div class="color-options">
+        <button class="color-btn" data-color="#E0D7CC"></button>
+        <button class="color-btn" data-color="#ffffff"></button>
+        <button class="color-btn" data-color="#151613"></button>
+        <button class="color-btn" data-color="#5B5348"></button>
+        <button class="color-btn" data-color="#392418"></button>
+        <button class="color-btn" data-color="#5B3348"></button>
+      </div>
+      <a class="confirm-button" onclick="window.location.href='Share.html'">CONFIRM</a>
     </div>
-  </div>
-  </div>
-  </div>
+  </div>  </div>
 </div>
   
 <script>
@@ -57,7 +58,6 @@
           const stacked = document.createElement('img');
           stacked.src = img.src;
           stacked.style.border = '1px solid #000000';
-          stacked.style.boxShadow = '0 4px 12px rgba(0,0,0,0.3)';
           column.appendChild(stacked);
         });
 
@@ -70,8 +70,10 @@
   // Color option buttons
 const colorButtons = document.querySelectorAll('.color-btn');
 colorButtons.forEach(btn => {
+  const chosenColor = btn.getAttribute('data-color');
+  btn.style.backgroundColor = chosenColor; // show color in circle
+
   btn.addEventListener('click', () => {
-    const chosenColor = btn.getAttribute('data-color');
     polaroid.style.backgroundColor = chosenColor;
   });
 });
