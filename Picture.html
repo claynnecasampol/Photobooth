@@ -59,14 +59,26 @@
           countdown.style.display = 'none';
 
           // Take photo
-          const context = canvas.getContext('2d');
-          context.drawImage(video, 0, 0, canvas.width, canvas.height);
-          const imageData = canvas.toDataURL("image/png");
+const context = canvas.getContext('2d');
+
+// ✅ Flip canvas horizontally before drawing
+context.save();
+context.translate(canvas.width, 0);
+context.scale(-1, 1);
+
+context.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+context.restore();
+
+const imageData = canvas.toDataURL("image/png");
 
           const slot = gallery.children[photoCount];
           slot.src = imageData;
           slot.classList.remove('placeholder');
           slot.classList.add('active');
+
+          // Scroll the new photo into view
+          slot.scrollIntoView({ behavior: "smooth", inline: "center" });
 
           // Remove highlight from previous photo
           if (photoCount > 0) {

@@ -74,6 +74,11 @@ video {
   width: 50vw;
 }
 
+#video {
+  transform: scaleX(-1);   /* ✅ flips horizontally */
+  -webkit-transform: scaleX(-1); /* Safari support */
+}
+
 .button2 {
   position: absolute;
   bottom: 30%;              /* place at bottom of video */
