@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>Photobooth</title>
   <link rel="stylesheet" href="End.css"> <!-- reuse your existing styles -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 <body>
 <div class="stack-container">
@@ -35,6 +36,28 @@
     img.classList.add('photo');
     polaroid.appendChild(img);
   });
+
+  // ✅ Download Polaroid as straight image
+  document.getElementById("downloadBtn").addEventListener("click", function(e) {
+    e.preventDefault();
+
+    // Save current transform
+    const originalTransform = polaroid.style.transform;
+
+    // Temporarily reset tilt
+    polaroid.style.transform = "none";
+
+    html2canvas(polaroid).then(canvas => {
+      const link = document.createElement("a");
+      link.download = "polaroid.png";
+      link.href = canvas.toDataURL("image/png");
+      link.click();
+
+      // Restore tilt after capture
+      polaroid.style.transform = originalTransform;
+    });
+  });
+
 </script>
 </body>
 </html>
