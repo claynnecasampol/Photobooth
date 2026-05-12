@@ -12,7 +12,7 @@
   <button id="start" class="button2">
     <img src="elements/TakePics.png" alt="Start Capture" style="width:90px;height:60px;">
   </button>
-  <!-- ✅ Filters inside video-container -->
+  <!-- Filters inside video-container -->
   <div class="filters">
     <div class="filter-header">FILTER</div>
     <button class="filter-btn" data-filter="none" style="background-color: #E0D7CC;"></button>
@@ -30,16 +30,16 @@
   const startBtn = document.getElementById('start');
   const gallery = document.getElementById('gallery');
   const countdown = document.getElementById('countdown');
-  const clearBtn = document.getElementById('clear'); // make sure you have a clear button in HTML
+  const clearBtn = document.getElementById('clear'); 
   let photoCount = 0;
-  let currentFilter = "none"; // keep track of selected filter
+  let currentFilter = "none";
 
 // Filter buttons
 const filterButtons = document.querySelectorAll(".filter-btn");
 filterButtons.forEach(btn => {
   btn.addEventListener("click", () => {
     currentFilter = btn.getAttribute("data-filter");
-    video.style.filter = currentFilter; // apply to live video
+    video.style.filter = currentFilter; 
   });
 });
 
@@ -76,12 +76,12 @@ filterButtons.forEach(btn => {
           // Take photo
 const context = canvas.getContext('2d');
 
-// ✅ Flip canvas horizontally before drawing
+//  Flip canvas horizontally before drawing
 context.save();
 context.translate(canvas.width, 0);
 context.scale(-1, 1);
 
-// ✅ Apply the current filter to the canvas
+// Apply the current filter to the canvas
 context.filter = currentFilter;
 
 context.drawImage(video, 0, 0, canvas.width, canvas.height);
@@ -115,7 +115,7 @@ const imageData = canvas.toDataURL("image/png");
             localStorage.setItem("capturedPhotos", JSON.stringify(images));
 
             // Redirect to next page
-            window.location.href = "choose.html";
+            window.location.href = "C:\\Photobooth\\choose.html";
           }
         }
       }, 1000);

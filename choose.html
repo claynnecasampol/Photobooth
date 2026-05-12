@@ -47,9 +47,9 @@
         img.classList.remove('selected'); // limit to 4
       }
 
-      // ✅ Automatically stack when 4 are selected
+      // Automatically stack when 4 are selected
       if (selected.length === 4) {
-        polaroid.innerHTML = ''; // clear frame
+        polaroid.innerHTML = ''; 
 
         const column = document.createElement('div');
         column.className = 'image-column';
@@ -89,7 +89,7 @@ function saveSelection() {
   localStorage.setItem("frameColor", frameColor);
 
   // Redirect to drop page
-  window.location.href = "Drop.html";
+  window.location.href = "C:\\Photobooth\\Drop.html";
 }
 </script>
 </body>
