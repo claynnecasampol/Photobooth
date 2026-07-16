@@ -79,17 +79,26 @@ colorButtons.forEach(btn => {
 });
 
 function saveSelection() {
-  const selected = Array.from(document.querySelectorAll('.gallery img.selected'))
-                        .map(img => img.src);
+  const selected = document.querySelectorAll('.gallery img.selected');
+  if (selected.length !== 4) {
+    alert("Please select exactly 4 photos.");
+    return;
+  }
 
-  const frameColor = document.getElementById('polaroid').style.backgroundColor;
-
-  // Save to localStorage
-  localStorage.setItem("selectedPhotos", JSON.stringify(selected));
-  localStorage.setItem("frameColor", frameColor);
-
-  // Redirect to drop page
-  window.location.href = "C:\\Photobooth\\Drop.html";
+  try {
+    const selectedPhotos = Array.from(selected).map(img => img.src);
+    localStorage.setItem("selectedPhotos", JSON.stringify(selectedPhotos));
+    localStorage.setItem("frameColor", polaroid.style.backgroundColor);
+    window.location.href = "Download.html";
+  } catch (e) {
+    if (e.name === 'QuotaExceededError') {
+      alert('Storage quota exceeded. Please clear your browser cache and try again.');
+      // Optionally clear old captured photos to free space
+      localStorage.removeItem("capturedPhotos");
+    } else {
+      alert('An error occurred: ' + e.message);
+    }
+  }
 }
 </script>
 </body>

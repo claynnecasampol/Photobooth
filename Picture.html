@@ -24,24 +24,23 @@
 </div>
 <canvas id="canvas" width="640" height="480" style="display:none;"></canvas>
 
-  <script>
+<script>
   const video = document.getElementById('video');
   const canvas = document.getElementById('canvas');
   const startBtn = document.getElementById('start');
   const gallery = document.getElementById('gallery');
   const countdown = document.getElementById('countdown');
-  const clearBtn = document.getElementById('clear'); 
   let photoCount = 0;
   let currentFilter = "none";
 
-// Filter buttons
-const filterButtons = document.querySelectorAll(".filter-btn");
-filterButtons.forEach(btn => {
-  btn.addEventListener("click", () => {
-    currentFilter = btn.getAttribute("data-filter");
-    video.style.filter = currentFilter; 
+  // Filter buttons
+  const filterButtons = document.querySelectorAll(".filter-btn");
+  filterButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      currentFilter = btn.getAttribute("data-filter");
+      video.style.filter = currentFilter; 
+    });
   });
-});
 
   // Access webcam
   navigator.mediaDevices.getUserMedia({ video: true })
@@ -73,67 +72,49 @@ filterButtons.forEach(btn => {
           clearInterval(timer);
           countdown.style.display = 'none';
 
-          // Take photo
-const context = canvas.getContext('2d');
+          try {
+            const context = canvas.getContext('2d');
+            context.save();
+            context.translate(canvas.width, 0);
+            context.scale(-1, 1);
+            context.filter = currentFilter;
+            context.drawImage(video, 0, 0, canvas.width, canvas.height);
+            context.restore();
 
-//  Flip canvas horizontally before drawing
-context.save();
-context.translate(canvas.width, 0);
-context.scale(-1, 1);
+            const imageData = canvas.toDataURL("image/jpeg", 0.6); // instead of "image/png"
+            const slot = gallery.children[photoCount];
+            slot.src = imageData;
+            slot.classList.remove('placeholder');
+            slot.classList.add('active');
+            slot.scrollIntoView({ behavior: "smooth", inline: "center" });
 
-// Apply the current filter to the canvas
-context.filter = currentFilter;
+            if (photoCount > 0) {
+              gallery.children[photoCount - 1].classList.remove('active');
+            }
 
-context.drawImage(video, 0, 0, canvas.width, canvas.height);
+            photoCount++;
 
-context.restore();
+            if (photoCount < 6) {
+              timeLeft = 3;
+              setTimeout(runCountdown, 1000);
+            } else {
+              // Save all photos to localStorage (use the key Choose.html expects)
+              const images = Array.from(document.querySelectorAll('#gallery img'))
+                                  .map(img => img.src);
+              localStorage.setItem("capturedPhotos", JSON.stringify(images));
 
-const imageData = canvas.toDataURL("image/png");
-
-          const slot = gallery.children[photoCount];
-          slot.src = imageData;
-          slot.classList.remove('placeholder');
-          slot.classList.add('active');
-
-          // Scroll the new photo into view
-          slot.scrollIntoView({ behavior: "smooth", inline: "center" });
-
-          // Remove highlight from previous photo
-          if (photoCount > 0) {
-            gallery.children[photoCount - 1].classList.remove('active');
-          }
-
-          photoCount++;
-
-          if (photoCount < 6) {
-            timeLeft = 3; // reset countdown
-            setTimeout(runCountdown, 1000); // start next countdown
-          } else {
-            // Save all photos to localStorage
-            const images = Array.from(document.querySelectorAll('#gallery img'))
-                                .map(img => img.src);
-            localStorage.setItem("capturedPhotos", JSON.stringify(images));
-
-            // Redirect to next page
-            window.location.href = "C:\\Photobooth\\choose.html";
+              // Redirect to Choose.html
+              window.location.href = "Choose.html";
+            }
+          } catch (err) {
+            console.error("Capture failed:", err);
+            alert("Something went wrong capturing the photo — check console.");
           }
         }
       }, 1000);
     }
 
     runCountdown();
-  });
-
-  clearBtn.addEventListener('click', () => {
-    gallery.innerHTML = '';
-    photoCount = 0;
-    // Recreate placeholders
-    for (let i = 0; i < 6; i++) {
-      const placeholder = document.createElement('img');
-      placeholder.src = '';
-      placeholder.classList.add('placeholder');
-      gallery.appendChild(placeholder);
-    }
   });
 </script>
 </body>
