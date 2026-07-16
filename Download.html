@@ -37,14 +37,32 @@
     polaroid.appendChild(img);
   });
 
+  // Add caption once at the bottom
+  const caption = document.createElement('h6');
+  caption.textContent = "SnapCiti";
+  caption.classList.add('frame-text');
+  polaroid.appendChild(caption);
+
+  // Normalize color string for comparison
+  const colorValue = frameColor.toLowerCase();
+
+  // Adjust caption color based on frameColor (check both hex and rgb)
+  if (
+    colorValue === "#151613" ||
+    colorValue === "#392418" ||
+    colorValue === "rgb(21, 22, 19)" ||
+    colorValue === "rgb(57, 36, 24)"
+  ) {
+    caption.style.color = "#E0D7CC"; // light text for dark frames
+  } else {
+    caption.style.color = "#000000"; // black text for light frames
+  }
+
   // ✅ Download Polaroid as straight image
   document.getElementById("downloadBtn").addEventListener("click", function(e) {
     e.preventDefault();
 
-    // Save current transform
     const originalTransform = polaroid.style.transform;
-
-    // Temporarily reset tilt
     polaroid.style.transform = "none";
 
     html2canvas(polaroid).then(canvas => {
@@ -52,12 +70,9 @@
       link.download = "polaroid.png";
       link.href = canvas.toDataURL("image/png");
       link.click();
-
-      // Restore tilt after capture
       polaroid.style.transform = originalTransform;
     });
   });
-
 </script>
 </body>
 </html>

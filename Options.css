@@ -1,4 +1,4 @@
- @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Fleur+De+Leah&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Fleur+De+Leah&family=Tilt+Warp&display=swap');
 
  body {
       font-family: sans-serif;
@@ -75,6 +75,18 @@
     box-shadow: 0 4px 12px rgba(0,0,0,0.3);
     position: relative;
 }
+
+.frame-text {
+  position: absolute;
+  bottom: 10px;   /* place at bottom of frame */
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-family: "Tilt Warp", sans-serif;
+  font-size: 14px;
+  color: #000;
+}
+
 .stack-container {
   display: flex;
   justify-content: center;  

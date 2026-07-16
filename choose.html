@@ -14,7 +14,9 @@
   <div class="right-panel">
     <h2 class="polaroid-heading">SELECT 4 PHOTOS</h2>
     <div class="frame-and-options">
-    <div class="polaroid-frame" id="polaroid"></div>
+   <div class="polaroid-frame" id="polaroid">
+      <h6 class="frame-text">SnapCiti</h6>
+    </div>
 
     <div class="frame-options">
       <h2 class="frame-heading">FRAME COLORS</h2>
@@ -62,44 +64,59 @@
         });
 
         polaroid.appendChild(column);
+
+        // Add caption once
+        const caption = document.createElement('h6');
+        caption.textContent = "SnapCiti";
+        caption.classList.add('frame-text');
+        polaroid.appendChild(caption);
       }
     });
     gallery.appendChild(img);
   });
 
   // Color option buttons
-const colorButtons = document.querySelectorAll('.color-btn');
-colorButtons.forEach(btn => {
-  const chosenColor = btn.getAttribute('data-color');
-  btn.style.backgroundColor = chosenColor; // show color in circle
+  const colorButtons = document.querySelectorAll('.color-btn');
+  colorButtons.forEach(btn => {
+    const chosenColor = btn.getAttribute('data-color');
+    btn.style.backgroundColor = chosenColor; // show color in circle
 
-  btn.addEventListener('click', () => {
-    polaroid.style.backgroundColor = chosenColor;
+    btn.addEventListener('click', () => {
+      polaroid.style.backgroundColor = chosenColor;
+
+      // adjust caption color based on chosen frame color
+      const caption = polaroid.querySelector('.frame-text');
+      if (caption) {
+        if (chosenColor === "#151613" || chosenColor === "#392418") {
+          caption.style.color = "#E0D7CC"; // light text for dark frames
+        } else {
+          caption.style.color = "#000000"; // black text for light frames
+        }
+      }
+    });
   });
-});
 
-function saveSelection() {
-  const selected = document.querySelectorAll('.gallery img.selected');
-  if (selected.length !== 4) {
-    alert("Please select exactly 4 photos.");
-    return;
-  }
+  function saveSelection() {
+    const selected = document.querySelectorAll('.gallery img.selected');
+    if (selected.length !== 4) {
+      alert("Please select exactly 4 photos.");
+      return;
+    }
 
-  try {
-    const selectedPhotos = Array.from(selected).map(img => img.src);
-    localStorage.setItem("selectedPhotos", JSON.stringify(selectedPhotos));
-    localStorage.setItem("frameColor", polaroid.style.backgroundColor);
-    window.location.href = "Drop.html";
-  } catch (e) {
-    if (e.name === 'QuotaExceededError') {
-      alert('Storage quota exceeded. Please clear your browser cache and try again.');
-      // Optionally clear old captured photos to free space
-      localStorage.removeItem("capturedPhotos");
-    } else {
-      alert('An error occurred: ' + e.message);
+    try {
+      const selectedPhotos = Array.from(selected).map(img => img.src);
+      localStorage.setItem("selectedPhotos", JSON.stringify(selectedPhotos));
+      localStorage.setItem("frameColor", polaroid.style.backgroundColor);
+      window.location.href = "Drop.html";
+    } catch (e) {
+      if (e.name === 'QuotaExceededError') {
+        alert('Storage quota exceeded. Please clear your browser cache and try again.');
+        localStorage.removeItem("capturedPhotos");
+      } else {
+        alert('An error occurred: ' + e.message);
+      }
     }
   }
-}
 </script>
 </body>
 </html>
