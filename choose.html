@@ -89,7 +89,7 @@ function saveSelection() {
     const selectedPhotos = Array.from(selected).map(img => img.src);
     localStorage.setItem("selectedPhotos", JSON.stringify(selectedPhotos));
     localStorage.setItem("frameColor", polaroid.style.backgroundColor);
-    window.location.href = "Download.html";
+    window.location.href = "Drop.html";
   } catch (e) {
     if (e.name === 'QuotaExceededError') {
       alert('Storage quota exceeded. Please clear your browser cache and try again.');
