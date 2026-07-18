@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Intro1style.css">
+    <title>Photobooth</title>
+</head>
+<body>
+    <div class="container">
+        <img class = Intro1 src="./Image/Intro1.png">
+    </div>
+</body>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const intro1 = document.querySelector(".Intro1");
+    intro1.addEventListener("animationend", function() {
+      window.location.href = "Introduction2.html";
+    });
+  });
+</script>
+
+</html>

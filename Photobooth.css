@@ -10,7 +10,6 @@ body {
     margin: 0;                  /* remove default body margin */
 }
 
-
 .Greetings {
     display: flex;
     text-align: center;

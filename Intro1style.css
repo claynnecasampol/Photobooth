@@ -1,0 +1,34 @@
+body {
+    background-image: linear-gradient(#010355, #536DA7);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    overflow: hidden;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  height: 100vh;
+  }
+  
+.Intro1 {
+  margin-top: 55px;
+  width: 40%;
+  height: auto;
+  animation: zoomSequence 6s forwards; /* run once, keep final state */
+}
+
+@keyframes zoomSequence {
+  0% {
+    transform: scale(1);      /* normal size */
+  }
+  50% {
+    transform: scale(1.1);    /* zoom in 10% */
+  }
+  100% {
+    transform: scale(1.3);    /* zoom in 30% */
+  }
+}

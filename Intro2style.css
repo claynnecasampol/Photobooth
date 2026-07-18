@@ -1,0 +1,65 @@
+body {
+    background-image: linear-gradient(#010355, #536DA7);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    overflow: hidden;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: 100vh;
+}
+
+.IntroOpen {
+  position: absolute;
+  width: 52%;   
+  height: auto;
+  z-index: 4;   
+}
+
+.IntroRectangle {
+  position: absolute;
+  width: 60%;
+  height: auto;
+  z-index: 1;  
+}
+
+.IntroCurtain {
+  position: absolute;
+  top: 50%;            
+  left: 50%;             
+  transform: translate(-50%, -50%);
+  width: 32%;
+  height: auto;
+  z-index: 3;
+  animation: slideCurtain 3s forwards;
+}
+
+@keyframes slideCurtain {
+  from { transform: translate(-50%, -50%) translateX(0); }
+  to   { transform: translate(-50%, -50%) translateX(-35%); }
+}
+
+.IntroInside {
+  position: absolute;
+  width: 52%;   
+  height: auto;
+  z-index: 2;  
+}
+
+#blackOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: black;
+  opacity: 0;          /* hidden by default */
+  pointer-events: none; /* para hindi maka-block ng clicks */
+  z-index: 9999;       /* nasa ibabaw ng lahat */
+  transition: opacity 0.5s ease; /* smooth fade */
+}
