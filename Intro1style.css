@@ -18,7 +18,7 @@ body {
   margin-top: 55px;
   width: 40%;
   height: auto;
-  animation: zoomSequence 6s forwards; /* run once, keep final state */
+  animation: zoomSequence 6s forwards; 
 }
 
 @keyframes zoomSequence {

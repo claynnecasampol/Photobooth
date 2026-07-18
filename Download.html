@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Photobooth</title>
-  <link rel="stylesheet" href="End.css"> <!-- reuse your existing styles -->
+  <link rel="stylesheet" href="End.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 <body>
@@ -29,7 +29,7 @@
 
   polaroid.style.backgroundColor = frameColor;
 
-  // Add photos inside the frame (no animation)
+  // Add photos inside the frame
   selectedPhotos.forEach(src => {
     const img = document.createElement('img');
     img.src = src;
@@ -46,7 +46,7 @@
   // Normalize color string for comparison
   const colorValue = frameColor.toLowerCase();
 
-  // Adjust caption color based on frameColor (check both hex and rgb)
+  // Adjust caption color based on frameColor
   if (
     colorValue === "#151613" ||
     colorValue === "#392418" ||

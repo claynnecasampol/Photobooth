@@ -58,8 +58,8 @@ body {
   width: 100%;
   height: 100%;
   background: black;
-  opacity: 0;          /* hidden by default */
-  pointer-events: none; /* para hindi maka-block ng clicks */
-  z-index: 9999;       /* nasa ibabaw ng lahat */
-  transition: opacity 0.5s ease; /* smooth fade */
+  opacity: 0;         
+  pointer-events: none; 
+  z-index: 9999;     
+  transition: opacity 0.5s ease; 
 }
