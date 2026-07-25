@@ -1,11 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Fleur+De+Leah&family=Tilt+Warp&display=swap');
 
- body {
-      font-family: sans-serif;
-      text-align: center;
-      background-color: #353632;
-      color: white;
-    }
+body {
+  font-family: sans-serif;
+  text-align: center;
+  background-color: #353632;
+  color: white;
+}
     
 .gallery {
   display: grid;
@@ -28,31 +28,34 @@
 .gallery img.selected {
   border-color: #ff4081;
 }
-    #confirm {
-      padding: 10px 20px;
-      font-size: 16px;
-      color: white;
-      border: none;
-      cursor: pointer;
-      margin-bottom: 20px;
-    }
-    #confirm:disabled {
-      background-color: #555;
-      cursor: not-allowed;
-    }
 
-    .stacked-photo {
-      width: 140px;
-      height: 90px;
-      object-fit: cover;
-      position: absolute;
-      left: 20px;
-      transition: transform 0.3s;
-    }
-    .stacked-photo:nth-child(1) { top: 20px; z-index: 1; transform: rotate(-2deg); }
-    .stacked-photo:nth-child(2) { top: 40px; z-index: 2; transform: rotate(1deg); }
-    .stacked-photo:nth-child(3) { top: 60px; z-index: 3; transform: rotate(-1deg); }
-    .stacked-photo:nth-child(4) { top: 80px; z-index: 4; transform: rotate(2deg); }
+#confirm {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: white;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+#confirm:disabled {
+  background-color: #555;
+  cursor: not-allowed;
+}
+
+.stacked-photo {
+  width: 140px;
+  height: 90px;
+  object-fit: cover;
+  position: absolute;
+  left: 20px;
+  transition: transform 0.3s;
+}
+
+.stacked-photo:nth-child(1) { top: 20px; z-index: 1; transform: rotate(-2deg); }
+.stacked-photo:nth-child(2) { top: 40px; z-index: 2; transform: rotate(1deg); }
+.stacked-photo:nth-child(3) { top: 60px; z-index: 3; transform: rotate(-1deg); }
+.stacked-photo:nth-child(4) { top: 80px; z-index: 4; transform: rotate(2deg); }
 
 .image-column {
   display: flex;
@@ -68,12 +71,12 @@
 }
 
 .polaroid-frame {
-    background: #ffffff;
-    padding: 20px;
-    width: 170px;
-    height: 535px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-    position: relative;
+  background: #ffffff;
+  padding: 20px;
+  width: 170px;
+  height: 535px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  position: relative;
 }
 
 .frame-text {
@@ -112,9 +115,9 @@
   margin-bottom: 15px;
   color: white;
   font-family: "Cinzel", serif;
-    font-optical-sizing: auto;
-    font-weight: 400;
-    font-style: normal;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
   text-align: left;
 }
 
@@ -171,10 +174,10 @@
   margin-top: 180px;
   padding: 12px 25px;
   font-size: 20px;
-    font-family: "Cinzel", serif;
-    font-optical-sizing: auto;
-    font-weight: 600;
-    font-style: normal;
+  font-family: "Cinzel", serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
   color: #151613;
   width: 130px;
   background-color: #E0D7CC;
@@ -182,4 +185,113 @@
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s;
+}
+
+.stack-container {
+  display: flex;
+  justify-content: center;  
+  align-items: stretch;       
+  gap: 180px;
+  flex-wrap: wrap;            /* allow wrapping if needed */
+}
+
+/* 📱 Mobile view */
+@media (max-width: 768px) {
+  .stack-container {
+    flex-direction: row;       /*keep side-by-side layout */
+    flex-wrap: wrap;           /* allow wrapping if too tight */
+    justify-content: center;
+    gap: 40px;                 /* smaller gap for phones */
+    padding: 10px;
+  }
+
+  .left-panel {
+    margin-top: 20px;
+    align-items: center;
+    justify-content: center;
+    width: auto;               /* let it shrink naturally */
+  }
+
+  .gallery {
+    grid-template-columns: repeat(2, 120px); /* smaller columns */
+    gap: 15px;
+    margin: 0 auto;
+    width: auto;
+    justify-items: center;
+  }
+
+  .gallery img {
+    width: 130px;   /* smaller image size */
+    height: 120px;  /* keep aspect ratio manageable */
+  }
+
+  .right-panel {
+    margin-top: 0;
+    align-items: center;     
+    text-align: center;      
+    width: auto;             /* match left-panel behavior */
+    max-width: 250px;        /* same scale as gallery */
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .right-panel h2 {
+    text-align: left;      
+  }
+
+  .polaroid-heading {
+    font-size: 22px;         
+    margin-bottom: 15px;
+    text-align: left;
+  }
+
+  .frame-and-options {
+    flex-direction: row;     /* keep frame + options side-by-side */
+    justify-content: center;
+    gap: 20px;               /* tighter spacing so it looks smaller */
+    align-items: flex-start;
+  }
+
+  .polaroid-frame {
+    width: 120px;            /* shrink frame */
+    height: 410px;           /* proportional shrink */
+    padding-top: 15px;   
+    padding-right: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+  }
+
+  .polaroid-frame img {
+    width: 100%;     /* auto shrink relative to frame */
+    height: auto;   /* maintain aspect ratio */
+    max-width: 100px; 
+    object-fit: cover;
+  }
+
+  .frame-options {
+    margin-top: 63%;
+    align-items: center;
+  }
+
+  .frame-heading {
+    font-size: 14px;         
+    margin-bottom: 10px;
+  }
+
+  .color-options {
+    gap: 15px;
+    grid-template-columns: repeat(3, 25px); 
+  }
+
+  .color-btn {
+    width: 25px;
+    height: 25px;
+  }
+
+  .confirm-button {
+    margin-top: 70%;
+    font-size: 12px;         
+    width: 90px;             
+    padding: 6px 14px;
+  }
 }
