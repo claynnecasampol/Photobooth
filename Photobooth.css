@@ -72,10 +72,15 @@ video {
 }
 
 .video-container {
-  position: relative; /* allows absolute positioning inside */
+  position: relative;
   display: absolute;
   flex-direction: column;
   align-items: center;
+  width: 100%;
+  max-width: 800px;
+  margin: auto;
+  padding: 0 12px;   /* breathing room on larger screens */
+  box-sizing: border-box;
 }
 
 #video {
@@ -148,18 +153,19 @@ button {
 
 .photo-strip {
   display: flex;
-  flex-direction: row;   /* force horizontal layout */
+  flex-direction: row;
   gap: 10px;
   padding: 10px;
   border-radius: 8px;
-  width: 50vw;           /* visible width (fits ~4 images) */
-  overflow-x: auto;      /* enable horizontal scroll */
-  overflow-y: hidden;    /* hide vertical scroll */
-  scrollbar-width: none; /* Firefox */
+  width: 100%;              /* ✅ use full container width by default */
+  max-width: 800px;         /* optional cap for desktop */
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
 }
 
 .photo-strip img {
-  flex: 0 0 auto;        /* prevent shrinking */
+  flex: 0 0 auto;
   width: 180px;
   height: 120px;
   object-fit: cover;
@@ -171,10 +177,10 @@ button {
 }
 
 .photo-strip::-webkit-scrollbar {
-  display: none;         /* Chrome, Safari */
+  display: none;
 }
 .photo-strip {
-  -ms-overflow-style: none;  /* IE and Edge */
+  -ms-overflow-style: none;
 }
 
 /* 📱 Mobile view */
@@ -184,6 +190,29 @@ button {
     height: 40vh;          /* taller on mobile */
     min-height: 250px;     /* smaller minimum for phones */
     border-radius: 0;      /* optional: edge-to-edge look */
+  }
+
+  .video-container {
+    width: 100vw;        /* full viewport width */
+    max-width: none;     /* remove desktop cap */
+    padding: 0 4px;      /* much smaller side padding */
+  }
+
+  .filters {
+    width: 100vw;        /* match video width */
+    padding: 0 4px;      /* small breathing room */
+    box-sizing: border-box;
+  }
+
+  .photo-strip {
+    width: 100vw;           /* ✅ widen to full viewport width */
+    padding: 6px;
+    box-sizing: border-box;
+  }
+
+  .photo-strip img {
+    width: 140px;           /* optional: smaller thumbnails for phones */
+    height: 100px;
   }
 }
 
