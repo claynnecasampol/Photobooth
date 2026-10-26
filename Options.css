@@ -81,7 +81,7 @@ body {
 
 .frame-text {
   position: absolute;
-  bottom: 10px;   /* place at bottom of frame */
+  bottom: 10px;   
   left: 0;
   right: 0;
   text-align: center;
@@ -151,17 +151,17 @@ body {
   margin-top: 20px;
   display: grid;
   grid-template-columns: repeat(3, 40px); /* 3 buttons per row */
-  gap: 30px; /* spacing between buttons */
-  justify-content: flex-end; /* align grid to the right side */
+  gap: 30px;
+  justify-content: flex-end; 
 }
 
 .color-btn {
   width: 40px;
   height: 40px;
-  border-radius: 50%;        /* makes them circular */
-  border: 2px solid #ccc;    /* optional border */
+  border-radius: 50%;       
+  border: 2px solid #ccc;   
   cursor: pointer;
-  background-color: transparent; /* will be set via JS */
+  background-color: transparent; 
   transition: transform 0.2s, border-color 0.2s;
 }
 
@@ -192,16 +192,16 @@ body {
   justify-content: center;  
   align-items: stretch;       
   gap: 180px;
-  flex-wrap: wrap;            /* allow wrapping if needed */
+  flex-wrap: wrap;          
 }
 
-/* 📱 Mobile view */
+/* Mobile view */
 @media (max-width: 768px) {
   .stack-container {
-    flex-direction: row;       /*keep side-by-side layout */
-    flex-wrap: wrap;           /* allow wrapping if too tight */
+    flex-direction: row;       
+    flex-wrap: wrap;          
     justify-content: center;
-    gap: 40px;                 /* smaller gap for phones */
+    gap: 40px;             
     padding: 10px;
   }
 
@@ -209,11 +209,11 @@ body {
     margin-top: 20px;
     align-items: center;
     justify-content: center;
-    width: auto;               /* let it shrink naturally */
+    width: auto;               
   }
 
   .gallery {
-    grid-template-columns: repeat(2, 120px); /* smaller columns */
+    grid-template-columns: repeat(2, 120px); 
     gap: 15px;
     margin: 0 auto;
     width: auto;
@@ -221,16 +221,16 @@ body {
   }
 
   .gallery img {
-    width: 130px;   /* smaller image size */
-    height: 120px;  /* keep aspect ratio manageable */
+    width: 130px;   
+    height: 120px;
   }
 
   .right-panel {
     margin-top: 0;
     align-items: center;     
     text-align: center;      
-    width: auto;             /* match left-panel behavior */
-    max-width: 250px;        /* same scale as gallery */
+    width: auto;           
+    max-width: 250px;     
     margin-left: auto;
     margin-right: auto;
   }
@@ -246,15 +246,15 @@ body {
   }
 
   .frame-and-options {
-    flex-direction: row;     /* keep frame + options side-by-side */
+    flex-direction: row;    
     justify-content: center;
-    gap: 20px;               /* tighter spacing so it looks smaller */
+    gap: 20px;               
     align-items: flex-start;
   }
 
   .polaroid-frame {
-    width: 120px;            /* shrink frame */
-    height: 410px;           /* proportional shrink */
+    width: 120px;          
+    height: 410px;         
     padding-top: 15px;   
     padding-right: 5px;
     padding-bottom: 5px;
@@ -262,8 +262,8 @@ body {
   }
 
   .polaroid-frame img {
-    width: 100%;     /* auto shrink relative to frame */
-    height: auto;   /* maintain aspect ratio */
+    width: 100%;     
+    height: auto;  
     max-width: 100px; 
     object-fit: cover;
   }
