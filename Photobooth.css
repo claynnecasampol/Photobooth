@@ -5,9 +5,9 @@ body {
     font-family: Arial, sans-serif;
     justify-content: center;    /* center horizontally */
     align-items: center;        /* center vertically */
-    display: flex;              /* use flexbox layout */
+    display: flex;            
     height: 100vh;              /* full viewport height */
-    margin: 0;                  /* remove default body margin */
+    margin: 0;                 
 }
 
 .Greetings {
@@ -32,11 +32,11 @@ body {
     font-weight: 400;
     font-style: normal;
     font-size: 8rem;
-    color: #fff6dd;             /* matches container text color */
+    color: #fff6dd;         
 }
 
 .button1 {
-    background-color: #4CAF50; /* Green */
+    background-color: #4CAF50; 
     border: none;
     color: white;
     font-family: "Cinzel", serif;
@@ -63,9 +63,9 @@ body {
 
 video {
   border: 2px solid #333;
-  width: 100%;             /* default full width of container */
+  width: 100%;             
   max-width: 800px;        /* cap for larger screens */
-  height: auto;            /* keep aspect ratio */
+  height: auto;          
   display: block;
   margin-bottom: 10px;
   object-fit: cover;
@@ -84,7 +84,7 @@ video {
 }
 
 #video {
-  transform: scaleX(-1);   /* ✅ flips horizontally */
+  transform: scaleX(-1);   /* flips horizontally */
   -webkit-transform: scaleX(-1); /* Safari support */
   align-self: center;      /* center video in container */
 }
@@ -157,7 +157,7 @@ button {
   gap: 10px;
   padding: 10px;
   border-radius: 8px;
-  width: 100%;              /* ✅ use full container width by default */
+  width: 100%;             
   max-width: 800px;         /* optional cap for desktop */
   overflow-x: auto;
   overflow-y: hidden;
@@ -183,45 +183,45 @@ button {
   -ms-overflow-style: none;
 }
 
-/* 📱 Mobile view */
+/* Mobile view */
 @media (max-width: 600px) {
   video {
-    width: 100vw;           /* almost full viewport width */
-    height: 40vh;          /* taller on mobile */
-    min-height: 250px;     /* smaller minimum for phones */
-    border-radius: 0;      /* optional: edge-to-edge look */
+    width: 100vw;          
+    height: 40vh;          
+    min-height: 250px;     
+    border-radius: 0;    
   }
 
   .video-container {
-    width: 100vw;        /* full viewport width */
-    max-width: none;     /* remove desktop cap */
-    padding: 0 4px;      /* much smaller side padding */
+    width: 100vw;       
+    max-width: none;    
+    padding: 0 4px;      
   }
 
   .filters {
     width: 100vw;        /* match video width */
-    padding: 0 4px;      /* small breathing room */
+    padding: 0 4px;    
     box-sizing: border-box;
   }
 
   .photo-strip {
-    width: 100vw;           /* ✅ widen to full viewport width */
+    width: 100vw;          
     padding: 6px;
     box-sizing: border-box;
   }
 
   .photo-strip img {
-    width: 140px;           /* optional: smaller thumbnails for phones */
+    width: 140px;          
     height: 100px;
   }
 }
 
-/* 💻 Laptop/Desktop view */
+/* Laptop/Desktop view */
 @media (min-width: 601px) {
   video {
-    width: 100%;            /* centered, not too wide */
-    max-height: 400px;          /* natural aspect ratio */
-    min-height: 300px;     /* keep good size */
-    margin: 0 auto 10px;   /* center horizontally */
+    width: 100%;           
+    max-height: 400px;       
+    min-height: 300px;   
+    margin: 0 auto 10px;  
   }
 }
