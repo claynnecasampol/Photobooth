@@ -58,7 +58,7 @@
   }
 
   startBtn.addEventListener('click', () => {
-    let timeLeft = 3; // countdown seconds
+    let timeLeft = 3; // countdown seconds for picture
 
     function runCountdown() {
       countdown.style.display = 'block';
@@ -81,7 +81,7 @@
             context.drawImage(video, 0, 0, canvas.width, canvas.height);
             context.restore();
 
-            const imageData = canvas.toDataURL("image/jpeg", 0.6); // instead of "image/png"
+            const imageData = canvas.toDataURL("image/jpeg", 0.6);
             const slot = gallery.children[photoCount];
             slot.src = imageData;
             slot.classList.remove('placeholder');
@@ -98,7 +98,7 @@
               timeLeft = 3;
               setTimeout(runCountdown, 1000);
             } else {
-              // Save all photos to localStorage (use the key Choose.html expects)
+              // Save all photos to localStorage 
               const images = Array.from(document.querySelectorAll('#gallery img'))
                                   .map(img => img.src);
               localStorage.setItem("capturedPhotos", JSON.stringify(images));
